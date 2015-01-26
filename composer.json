@@ -1,0 +1,12 @@
+{
+    "name": "davekiss/wp-coach",
+    "require": {
+        "mustache/mustache": "~2.7"
+    },
+    "authors": [
+        {
+            "name": "Dave Kiss",
+            "email": "dave@davekiss.com"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+/* line 1, ../scss/_forms.scss */
+.mfp-iframe-scaler iframe {
+  background: url(../img/spiffygif_36x36.gif) 50% 50% no-repeat #f1f1f1 !important;
+}
+
+/* line 7, ../scss/_forms.scss */
+.lesson-editor-container label {
+  display: block;
+  margin: 5px 0;
+  font-size: 16px;
+}
+/* line 13, ../scss/_forms.scss */
+.lesson-editor-container input[type="text"] {
+  padding: 5px;
+  margin: 0 0 10px;
+}
+
+/* line 1, ../scss/_base.scss */
+.lesson-editor-container {
+  margin: 20px;
+}
