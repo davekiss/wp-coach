@@ -3,7 +3,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class WP_Coach_Admin {
+class WP_Coach_Base {
 
   /**
    * [$mustache description]
@@ -16,9 +16,15 @@ class WP_Coach_Admin {
    */
   public function __construct() {
 
-    $this->mustache = new Mustache_Engine( array(
-      'loader' => new Mustache_Loader_FilesystemLoader(WP_COACH_PATH . 'lib/admin/views'),
-    ) );
+    if ( is_admin() ) {
+      $this->mustache = new Mustache_Engine( array(
+        'loader' => new Mustache_Loader_FilesystemLoader(WP_COACH_PATH . 'lib/backend/views'),
+      ) );
+    } else {
+      $this->mustache = new Mustache_Engine( array(
+        'loader' => new Mustache_Loader_FilesystemLoader(WP_COACH_PATH . 'lib/frontend/views'),
+      ) );
+    }
 
   }
 

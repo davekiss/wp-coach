@@ -3,10 +3,9 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class WP_Coach_Admin_Menu extends WP_Coach_Admin {
+class WP_Coach_Admin_Menu {
 
   public function __construct() {
-    parent::__construct();
     add_action( 'admin_menu', array($this, 'add_menu') );
   }
 
@@ -59,19 +58,4 @@ class WP_Coach_Admin_Menu extends WP_Coach_Admin {
     echo $template->render($controller);
   }
 
-  /**
-   * Processes all WP Coach actions sent via POST and GET by looking for the 'wp-coach-action'
-   * request and running do_action() to call the function
-   *
-   * @return void
-   */
-  public static function process_actions() {
-    if ( isset( $_POST['wp-coach-action'] ) ) {
-      do_action( 'wp_coach_action_' . $_POST['wp-coach-action'], $_POST );
-    }
-
-    if ( isset( $_GET['wp-coach-action'] ) ) {
-      do_action( 'wp_coach_action_' . $_GET['wp-coach-action'], $_GET );
-    }
-  }
 }

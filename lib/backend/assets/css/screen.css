@@ -4,15 +4,19 @@
 }
 
 /* line 7, ../scss/_forms.scss */
+.lesson-editor-container .form-row {
+  margin: 10px 0 20px;
+}
+/* line 11, ../scss/_forms.scss */
 .lesson-editor-container label {
   display: block;
   margin: 5px 0;
   font-size: 16px;
 }
-/* line 13, ../scss/_forms.scss */
+/* line 17, ../scss/_forms.scss */
 .lesson-editor-container input[type="text"] {
   padding: 5px;
-  margin: 0 0 10px;
+  margin: 0;
 }
 
 /* line 1, ../scss/_base.scss */

@@ -48,7 +48,7 @@ if ( ! class_exists( 'WP_Coach' ) ) {
 
         // Can save these in public vars if need to access
         if ( is_admin() ) {
-          new WP_Coach_Admin;
+          new WP_Coach_Base;
           new WP_Coach_Admin_Menu;
           new WP_Coach_Admin_Scripts;
           self::$instance->courses = new WP_Coach_Courses;
@@ -99,18 +99,18 @@ if ( ! class_exists( 'WP_Coach' ) ) {
       }
 
       require_once WP_COACH_PATH . 'lib/includes/exception.php';
+      require_once WP_COACH_PATH . 'lib/base.php';
       require_once WP_COACH_PATH . 'lib/includes/init.php';
       require_once WP_COACH_PATH . 'lib/includes/post-types.php';
       require_once WP_COACH_PATH . 'lib/includes/shortcode.php';
 
       if ( is_admin() ) {
-        require_once WP_COACH_PATH . 'lib/admin/base.php';
-        require_once WP_COACH_PATH . 'lib/admin/includes/menu.php';
-        require_once WP_COACH_PATH . 'lib/admin/includes/scripts.php';
+        require_once WP_COACH_PATH . 'lib/backend/includes/menu.php';
+        require_once WP_COACH_PATH . 'lib/backend/includes/scripts.php';
 
         // Controllers should be conditionally loaded?
-        require_once WP_COACH_PATH . 'lib/admin/controllers/courses.php';
-        require_once WP_COACH_PATH . 'lib/admin/controllers/lessons.php';
+        require_once WP_COACH_PATH . 'lib/backend/controllers/courses.php';
+        require_once WP_COACH_PATH . 'lib/backend/controllers/lessons.php';
       }
     }
   }

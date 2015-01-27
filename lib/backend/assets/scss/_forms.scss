@@ -4,6 +4,10 @@
 
 .lesson-editor-container {
 
+  .form-row {
+    margin: 10px 0 20px;
+  }
+
   label {
     display: block;
     margin: 5px 0;
@@ -12,7 +16,7 @@
 
   input[type="text"] {
     padding: 5px;
-    margin: 0 0 10px;
+    margin: 0;
   }
 
 }

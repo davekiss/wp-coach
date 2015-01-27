@@ -14,11 +14,11 @@ class WP_Coach_Admin_Scripts {
    * @return [type] [description]
    */
   public function scripts() {
-    wp_register_style( 'wp-coach-admin',     WP_COACH_URL.'lib/admin/assets/css/screen.css');
-    wp_register_script( 'wp-coach-admin', WP_COACH_URL.'lib/admin/assets/js/wp-coach-admin.js', 'jquery');
+    wp_register_style( 'wp-coach-backend',     WP_COACH_URL.'lib/backend/assets/css/screen.css');
+    wp_register_script( 'wp-coach-backend', WP_COACH_URL.'lib/backend/assets/js/wp-coach-backend.js', 'jquery');
 
-    wp_enqueue_style( 'wp-coach-admin');
-    wp_enqueue_script( 'wp-coach-admin');
+    wp_enqueue_style( 'wp-coach-backend');
+    wp_enqueue_script( 'wp-coach-backend');
   }
 
 

@@ -1,0 +1,54 @@
+<div class="lesson-basics">
+
+  <form action="{{create_lesson_url}}" method="post">
+    {{{create_lesson_nonce_field}}}
+
+    <input type="hidden" name="wp_coach_course_id" value="{{course_id}}" />
+
+    <div class="form-row">
+      <label for="lesson_name">Lesson Name</label>
+      <input type="text" id="lesson_name" size="60" name="lesson[name]" value="" />
+    </div>
+
+    <div class="form-row">
+      <label for="name">Lesson Description</label>
+      {{{lesson_editor}}}
+    </div>
+
+    <div class="form-row">
+      <label for="require_payment" class="selectit">
+        <input id="require_payment" value="1" type="checkbox" name="lesson[require_payment]" /> Charge for this Lesson
+      </label>
+      <div class="form-row lesson-price">
+        <label for="price">Lesson Price</label>
+        <input type="text" id="price" name="lesson[price]" value="" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label for="lesson_difficulty">Difficulty Rating</label>
+      <select name="lesson[difficulty]" id="lesson_difficulty" class="">
+        <option value="1" selected="selected">1 - Easy</option>
+        <option value="2" selected="selected">2</option>
+        <option value="3" selected="selected">3 - Intermediate</option>
+        <option value="4" selected="selected">4</option>
+        <option value="5" selected="selected">5 - Advanced</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label for="lesson_length">Time to Complete (in minutes)</label>
+      <input type="text" id="lesson_length" name="lesson[length]" value="" />
+    </div>
+
+    <div class="form-row">
+      <label for="lesson_prereq">Lesson Prerequesite</label>
+      <select name="lesson[prereq]" id="lesson_prereq" class="">
+        <option value="none" selected="selected">None</option>
+        <option value="previous">Previous Lesson</option>
+      </select>
+    </div>
+
+    <input type="submit" class="button button-primary button-large" value="Save Lesson" />
+  </form>
+</div>

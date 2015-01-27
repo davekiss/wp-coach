@@ -3,11 +3,12 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class WP_Coach_Courses {
+class WP_Coach_Courses extends WP_Coach_Base {
   public function __construct() {
+    parent::__construct();
     add_filter('parse_query', array($this, 'only_show_users_courses') );
 
-    add_action( 'add_meta_boxes_wp_coach_course', array($this, 'add_meta_boxes') );
+    add_action( 'add_meta_boxes_wp_coach_course', array( $this, 'add_meta_boxes' ) );
     add_action( 'save_post', array( $this, 'save' ) );
     add_action( 'admin_enqueue_scripts', array($this, 'add_scripts') );
   }
@@ -34,8 +35,8 @@ class WP_Coach_Courses {
         return;
     }
 
-    wp_register_script('magnific-popup', WP_COACH_URL . 'lib/admin/assets/bower_components/magnific-popup/dist/jquery.magnific-popup.min.js', array('jquery') );
-    wp_register_style('magnific-popup', WP_COACH_URL . 'lib/admin/assets/bower_components/magnific-popup/dist/magnific-popup.css');
+    wp_register_script('magnific-popup', WP_COACH_URL . 'lib/backend/assets/bower_components/magnific-popup/dist/jquery.magnific-popup.min.js', array('jquery') );
+    wp_register_style('magnific-popup', WP_COACH_URL . 'lib/backend/assets/bower_components/magnific-popup/dist/magnific-popup.css');
 
     wp_enqueue_script('magnific-popup');
     wp_enqueue_style('magnific-popup');
@@ -78,12 +79,8 @@ class WP_Coach_Courses {
       ),
     ) );
 
-    $mustache = new Mustache_Engine( array(
-      'loader' => new Mustache_Loader_FilesystemLoader(WP_COACH_PATH . 'lib/admin/views'),
-    ) );
-
     $controller = WP_Coach::get_instance()->lessons;
-    $template = $mustache->loadTemplate('lessons/index');
+    $template = $this->mustache->loadTemplate('lessons/index');
     echo $template->render($controller);
   }
 

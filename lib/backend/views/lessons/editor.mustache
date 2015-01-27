@@ -1,0 +1,41 @@
+<div id="wpbody" class="wrap lesson-editor-container">
+
+  {{#flash}}
+    <div class="{{class}}">
+        <p><strong>{{title}}</strong> {{message}}</p>
+    </div>
+  {{/flash}}
+
+  <h1>{{page_title}}</h1>
+
+  <div id="tabstrip">
+
+    <ul>
+      <li class="k-state-active">Basics</li>
+      <li>Materials</li>
+      <li>Subtopics</li>
+    </ul>
+
+    {{> basics}}
+    {{> materials}}
+    {{> topics}}
+  </div>
+
+  <script>
+  (function($){
+    $(document).ready(function() {
+      $("#tabstrip").kendoTabStrip();
+
+      if($('#require_payment').is(":checked")) {
+        $('.lesson-price').show();
+      } else {
+        $('.lesson-price').hide();
+      }
+      $('#require_payment').click(function() {
+        $('.lesson-price').slideToggle('fast');
+      });
+
+    });
+  })(jQuery)
+  </script>
+</div>
