@@ -6,6 +6,7 @@ Description: WP Coach transforms your website into a training epicenter.
 Version: 1.0
 Author: Dave Kiss
 Author URI: http://davekiss.com
+Depends: JSON REST API
 License: GPL3
 Text Domain: wp-coach
 */
@@ -112,6 +113,9 @@ if ( ! class_exists( 'WP_Coach' ) ) {
       require_once WP_COACH_PATH . 'lib/includes/shortcode.php';
 
       if ( is_admin() ) {
+        if ( ! class_exists('Plugin_Dependencies_Loader') ) {
+          require_once WP_COACH_PATH . 'vendor/plugin-dependencies/plugin-dependencies.php';
+        }
         require_once WP_COACH_PATH . 'lib/backend/includes/menu.php';
         require_once WP_COACH_PATH . 'lib/backend/includes/scripts.php';
 
