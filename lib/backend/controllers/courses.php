@@ -14,7 +14,9 @@ class WP_Coach_Courses extends WP_Coach_Base {
   }
 
   /**
-   * [only_show_users_courses description]
+   * Limit the courses shown in the course list to courses
+   * created by the current author unless the user is an admin
+   *
    * @return [type] [description]
    */
   public function only_show_users_courses() {
@@ -46,7 +48,7 @@ class WP_Coach_Courses extends WP_Coach_Base {
    * [add_meta_boxes description]
    */
   public function add_meta_boxes($course) {
-    add_meta_box('wp-coach-lessons', 'Course Lessons', array($this, 'lessons_metabox'), 'wp_coach_course', 'normal', 'high' );
+    add_meta_box('wp-coach-sections', 'Course Sections', array($this, 'sections_metabox'), 'wp_coach_course', 'normal', 'high' );
     add_meta_box('wp-coach-course-settings', 'Course Settings', array($this, 'render_course_settings_metabox'), 'wp_coach_course', 'normal', 'high' );
   }
 
@@ -60,15 +62,15 @@ class WP_Coach_Courses extends WP_Coach_Base {
   }
 
   /**
-   * [lessons_metabox description]
+   * [modules_metabox description]
    * @param  [type] $course [description]
    * @return [type]         [description]
    */
-  public function lessons_metabox($course) {
+  public function sections_metabox($course) {
 
-    $lessons = get_posts( array(
+    $sections = get_posts( array(
       'posts_per_page' => -1,
-      'post_type'  => 'wp_coach_lesson',
+      'post_type'  => 'wp_coach_section',
       'perm'       => 'readable',
       'meta_query' => array(
         array(
@@ -79,8 +81,8 @@ class WP_Coach_Courses extends WP_Coach_Base {
       ),
     ) );
 
-    $controller = WP_Coach::get_instance()->lessons;
-    $template = $this->mustache->loadTemplate('lessons/index');
+    $controller = WP_Coach::get_instance()->sections;
+    $template = $this->mustache->loadTemplate('sections/index');
     echo $template->render($controller);
   }
 

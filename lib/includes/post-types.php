@@ -7,6 +7,7 @@ class WP_Coach_Post_Types {
 
   public function __construct() {
     add_action( 'init', array($this, 'register_course_post_type') );
+    add_action( 'init', array($this, 'register_section_post_type') );
     add_action( 'init', array($this, 'register_lesson_post_type') );
     add_action( 'init', array($this, 'register_subscription_post_type') );
   }
@@ -49,10 +50,55 @@ class WP_Coach_Post_Types {
       'has_archive'         => true,
       'exclude_from_search' => false,
       'publicly_queryable'  => true,
-      'capability_type'     => 'page',
+      'map_meta_cap'        => true,
+      'capability_type'     => 'wp_coach_course',
       //'register_meta_box_cb' => 'WP_Coach_Courses::add_meta_boxes'
     );
     register_post_type( 'wp_coach_course', $args );
+  }
+
+  /**
+   * [register_section_post_type description]
+   * @return [type] [description]
+   */
+  public function register_section_post_type() {
+
+    $labels = array(
+      'name'                => _x( 'Sections', 'Post Type General Name', 'wp-coach' ),
+      'singular_name'       => _x( 'Section', 'Post Type Singular Name', 'wp-coach' ),
+      'menu_name'           => __( 'Sections', 'wp-coach' ),
+      'parent_item_colon'   => __( 'Parent Section:', 'wp-coach' ),
+      'all_items'           => __( 'Sections', 'wp-coach' ),
+      'view_item'           => __( 'View Section', 'wp-coach' ),
+      'add_new_item'        => __( 'Add New Section', 'wp-coach' ),
+      'add_new'             => __( 'Add New', 'wp-coach' ),
+      'edit_item'           => __( 'Edit Section', 'wp-coach' ),
+      'update_item'         => __( 'Update Section', 'wp-coach' ),
+      'search_items'        => __( 'Search Section', 'wp-coach' ),
+      'not_found'           => __( 'Not found', 'wp-coach' ),
+      'not_found_in_trash'  => __( 'Not found in Trash', 'wp-coach' ),
+    );
+    $args = array(
+      'label'               => __( 'wp_coach_section', 'wp-coach' ),
+      'description'         => __( 'Organize your lessons into different sections.', 'wp-coach' ),
+      'labels'              => $labels,
+      'supports'            => array( 'title', 'author', 'thumbnail', 'revisions', 'page-attributes', ),
+      'taxonomies'          => array( 'category', 'post_tag' ),
+      'rewrite'             => array( 'slug' => 'section', 'with-front' => FALSE ),
+      'hierarchical'        => false,
+      'public'              => false,
+      'show_ui'             => false,
+      'show_in_menu'        => 'wp-coach',
+      'show_in_nav_menus'   => false,
+      'show_in_admin_bar'   => false,
+      'can_export'          => true,
+      'has_archive'         => false,
+      'exclude_from_search' => true,
+      'publicly_queryable'  => false,
+      'capability_type'     => 'page',
+      //'register_meta_box_cb' => 'WP_Coach_Courses::add_meta_boxes'
+    );
+    register_post_type( 'wp_coach_section', $args );
   }
 
   /**
