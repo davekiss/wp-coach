@@ -6,12 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class WP_Coach_Lessons extends WP_Coach_Base {
 
   /**
-   * An array of messages to be sent to the view
-   * @var array
-   */
-  public $flash = array();
-
-  /**
    * The heading for the rendered page
    * @var string
    */
