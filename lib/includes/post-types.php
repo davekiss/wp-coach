@@ -6,10 +6,28 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class WP_Coach_Post_Types {
 
   public function __construct() {
+    // NOTE: We need to add custom post_status params to each of these
+    // so that we don't rely on the "Publish" status making a course
+    // public to all users
     add_action( 'init', array($this, 'register_course_post_type') );
     add_action( 'init', array($this, 'register_section_post_type') );
     add_action( 'init', array($this, 'register_lesson_post_type') );
     add_action( 'init', array($this, 'register_subscription_post_type') );
+    add_action( 'init', array($this, 'register_protected_post_status') );
+  }
+
+  /**
+   * [register_protected_post_status description]
+   * @return [type] [description]
+   */
+  public function register_protected_post_status() {
+    register_post_status( 'wp_coach_protected', array(
+      'label' => __('Protected', 'wp-coach'),
+      'public' => true,
+      'exclude_from_search' => false,
+      'show_in_admin_all_list' => true,
+      'show_in_admin_status_list' => true,
+    ) );
   }
 
   /**
