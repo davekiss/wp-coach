@@ -36,12 +36,6 @@ class WP_Coach_Courses extends WP_Coach_Base {
     if ( 'post.php' != $hook ) {
         return;
     }
-
-    wp_register_script('magnific-popup', WP_COACH_URL . 'lib/backend/assets/bower_components/magnific-popup/dist/jquery.magnific-popup.min.js', array('jquery') );
-    wp_register_style('magnific-popup', WP_COACH_URL . 'lib/backend/assets/bower_components/magnific-popup/dist/magnific-popup.css');
-
-    wp_enqueue_script('magnific-popup');
-    wp_enqueue_style('magnific-popup');
   }
 
   /**
