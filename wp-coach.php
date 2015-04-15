@@ -64,6 +64,7 @@ if ( ! class_exists( 'WP_Coach' ) ) {
         }
 
         new WP_Coach_Init;
+        new WP_Coach_Capabilities;
         new WP_Coach_Post_Types;
         new WP_Coach_Shortcode;
       }
@@ -109,6 +110,7 @@ if ( ! class_exists( 'WP_Coach' ) ) {
       require_once WP_COACH_PATH . 'lib/includes/exception.php';
       require_once WP_COACH_PATH . 'lib/base.php';
       require_once WP_COACH_PATH . 'lib/includes/init.php';
+      require_once WP_COACH_PATH . 'lib/includes/capabilities.php';
       require_once WP_COACH_PATH . 'lib/includes/post-types.php';
       require_once WP_COACH_PATH . 'lib/includes/shortcode.php';
 
