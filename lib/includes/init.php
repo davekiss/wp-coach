@@ -51,6 +51,7 @@ class WP_Coach_Init extends WP_Coach {
 
   /**
    * [add_roles description]
+   * Todo: Add custom caps here, eg.: edit_wp_coach_course etc.
    */
   public function add_roles() {
     add_role( 'wp_coach_educator',  __('Educator', 'wp-coach'),  array( 'read' => true, ) );
@@ -63,7 +64,18 @@ class WP_Coach_Init extends WP_Coach {
    */
   public function add_caps() {
     $role = get_role( 'administrator' );
+    // $role->add_cap( 'read_wp_coach_course' );
+    $role->add_cap( 'read_wp_coach_courses' );
+    $role->add_cap( 'read_private_wp_coach_courses' );
     $role->add_cap( 'approve_wp_coach_courses' );
+    // $role->add_cap( 'edit_wp_coach_course' );
+    $role->add_cap( 'edit_wp_coach_courses' );
+    $role->add_cap( 'edit_published_wp_coach_courses' );
+    $role->add_cap( 'edit_others_wp_coach_courses' );
+    // $role->add_cap( 'delete_wp_coach_course' );
+    $role->add_cap( 'delete_wp_coach_courses' );
+    $role->add_cap( 'delete_published_wp_coach_courses' );
+    $role->add_cap( 'delete_others_wp_coach_courses' );
   }
 
 

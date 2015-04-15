@@ -55,7 +55,7 @@ class WP_Coach_Post_Types {
       'label'               => __( 'wp_coach_course', 'wp-coach' ),
       'description'         => __( 'Learn from a complete track.', 'wp-coach' ),
       'labels'              => $labels,
-      'supports'            => array( 'title', 'editor', 'author', 'thumbnail', 'comments', 'revisions', 'page-attributes', ),
+      'supports'            => array( 'title', 'editor', 'author', 'excerpt', 'thumbnail', 'comments', 'revisions', 'page-attributes', ),
       'taxonomies'          => array( 'category', 'post_tag' ),
       'rewrite'             => array( 'slug' => 'course', 'with-front' => FALSE ),
       'hierarchical'        => false,
