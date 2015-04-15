@@ -1,0 +1,71 @@
+<p data-bind="visible: sections().length > 0">This course has <span data-bind="text: sections().length"></span> section(s)</p>
+<span data-bind="visible: sections().length == 0">No sections found. Ready to add one?</span>
+
+<p></p>
+
+<ul data-bind="foreach: sections, visible: sections().length > 0">
+  <li>
+    Hello, <span data-bind="text: title"> </span>!
+  </li> 
+</ul>
+
+
+<form data-bind="submit: addSection">
+  <label for="section-title">Section Title</label>
+  <input id="section-title" type="text" value="" />
+  <input type="submit" class="button" value="Add Section" />
+  <button data-bind="click: addSection">Add hurr</button>
+</form>
+
+
+<a href="{{new_lesson_url}}" class="button wp-coach-add-lesson" title="">Add a Section</a>
+
+
+<script>
+(function($){
+  $(document).ready(function(){
+
+/*
+    $('.wp-coach-add-lesson').magnificPopup({
+      type:'iframe',
+      midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+    });
+*/
+  });
+
+  // Hook into the heartbeat-send
+  $(document).on('heartbeat-send', function(e, data) {
+    data['wp_coach_heartbeat'] = {
+      action: 'get_course_modules',
+      course_id: 18714
+    };
+  });
+
+  // Listen for the custom event "heartbeat-tick" on $(document).
+  $(document).on( 'heartbeat-tick', function(e, data) {
+
+    if ( ! data['wp-coach-modules'] ) {
+      return;
+    }
+
+    var modules = $.parseJSON( data['wp-coach-modules'] );
+
+    //console.log( data['wp-coach-modules'] );
+    var html = '';
+    $.each(modules, function(index, lesson){
+      var link = $('<a />', {
+        href: '#',
+        text: lesson.post_title
+      });
+      var li = $('<li />', {
+        html: link.prop('outerHTML')
+      });
+
+      html = html + li.prop('outerHTML');
+    });
+
+    $('#wp-coach-modules ul').html(html);
+  });
+
+})(jQuery)
+</script>

@@ -28,6 +28,12 @@ if ( ! class_exists( 'WP_Coach' ) ) {
     public $courses;
 
     /**
+     * [$sections description]
+     * @var [type]
+     */
+    public $sections;
+
+    /**
      * [$lessons description]
      * @var [type]
      */
@@ -52,6 +58,7 @@ if ( ! class_exists( 'WP_Coach' ) ) {
           new WP_Coach_Admin_Menu;
           new WP_Coach_Admin_Scripts;
           self::$instance->courses = new WP_Coach_Courses;
+          self::$instance->sections = new WP_Coach_Sections;
           self::$instance->lessons = new WP_Coach_Lessons;
         }
 
@@ -110,6 +117,7 @@ if ( ! class_exists( 'WP_Coach' ) ) {
 
         // Controllers should be conditionally loaded?
         require_once WP_COACH_PATH . 'lib/backend/controllers/courses.php';
+        require_once WP_COACH_PATH . 'lib/backend/controllers/sections.php';
         require_once WP_COACH_PATH . 'lib/backend/controllers/lessons.php';
       }
     }
