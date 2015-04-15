@@ -12,10 +12,17 @@ class WP_Coach_Base {
   public $mustache;
 
   /**
+   * An array of messages to be sent to the view
+   * @var array
+   */
+  public $flash = array();
+
+  /**
    * [__construct description]
    */
   public function __construct() {
 
+    // Determine which views to load based on where we are
     if ( is_admin() ) {
       $this->mustache = new Mustache_Engine( array(
         'loader' => new Mustache_Loader_FilesystemLoader(WP_COACH_PATH . 'lib/backend/views'),
