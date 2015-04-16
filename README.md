@@ -1,4 +1,4 @@
-# Coach [![Build Status](https://secure.travis-ci.org/davekiss/wp-coach.png?branch=master)](http://travis-ci.org/davekiss/wp-coach) [![Coverage Status](https://coveralls.io/repos/wp-davekiss/wp-coach/badge.png)](https://coveralls.io/r/davekiss/wp-coach) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/davekiss/wp-coach/badges/wp-quality-score.png?b=master)](https://scrutinizer-ci.com/g/davekiss/wp-coach/?branch=master) #
+# Coach [![Build Status](https://secure.travis-ci.org/davekiss/wp-coach.png?branch=master)](http://travis-ci.org/davekiss/wp-coach) [![Coverage Status](https://coveralls.io/repos/wp-davekiss/wp-coach/badge.png)](https://coveralls.io/r/davekiss/wp-coach) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/davekiss/wp-coach/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/davekiss/wp-coach/?branch=master) #
 
 ### Welcome to our GitHub Repository
 
