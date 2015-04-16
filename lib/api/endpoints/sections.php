@@ -7,7 +7,7 @@ class WP_Coach_API_Sections {
 
   public function __construct() {
     add_action( 'wp_ajax_wp_coach_api_sections_index',   array( $this, 'index' ) );
-    add_action( 'wp_ajax_wp_coach_api_sections_new',     array( $this, 'new') );
+    add_action( 'wp_ajax_wp_coach_api_sections_new',     array( $this, 'new_section') );
     add_action( 'wp_ajax_wp_coach_api_sections_create',  array( $this, 'create' ) );
     add_action( 'wp_ajax_wp_coach_api_sections_show',    array( $this, 'show' ) );
     add_action( 'wp_ajax_wp_coach_api_sections_edit',    array( $this, 'edit' ) );
@@ -26,7 +26,7 @@ class WP_Coach_API_Sections {
   }
 
 
-  public function new() {
+  public function new_section() {
     return;
   }
 
