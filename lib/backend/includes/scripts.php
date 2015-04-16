@@ -29,7 +29,7 @@ class WP_Coach_Admin_Scripts {
 
     wp_enqueue_style( 'wp-coach-backend');
 
-    wp_localize_script( 'wp-coach-backend', 'WP_Coach', array( 'nonce' => wp_create_nonce( 'wp_json' ) ) );
+    wp_localize_script( 'wp-coach-backend', 'WP_Coach', array( 'nonce' => wp_create_nonce( 'wp_json' ), 'ajax_url' => admin_url('admin-ajax.php') ) );
     wp_enqueue_script( 'wp-coach-backend');
   }
 
