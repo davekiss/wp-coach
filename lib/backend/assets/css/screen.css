@@ -1,25 +1,15 @@
-/* line 1, ../scss/_forms.scss */
 .mfp-iframe-scaler iframe {
-  background: url(../img/spiffygif_36x36.gif) 50% 50% no-repeat #f1f1f1 !important;
-}
+  background: url(../img/spiffygif_36x36.gif) 50% 50% no-repeat #f1f1f1 !important; }
 
-/* line 7, ../scss/_forms.scss */
 .lesson-editor-container .form-row {
-  margin: 10px 0 20px;
-}
-/* line 11, ../scss/_forms.scss */
+  margin: 10px 0 20px; }
 .lesson-editor-container label {
   display: block;
   margin: 5px 0;
-  font-size: 16px;
-}
-/* line 17, ../scss/_forms.scss */
+  font-size: 16px; }
 .lesson-editor-container input[type="text"] {
   padding: 5px;
-  margin: 0;
-}
+  margin: 0; }
 
-/* line 1, ../scss/_base.scss */
 .lesson-editor-container {
-  margin: 20px;
-}
+  margin: 20px; }
