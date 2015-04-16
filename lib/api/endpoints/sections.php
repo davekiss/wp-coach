@@ -22,7 +22,27 @@ class WP_Coach_API_Sections {
 
 
   public function index() {
-    return;
+    $course_id = intval( $_GET['course_id'] );
+
+    if ( ! current_user_can('read_wp_coach_course', $course_id ) ) {
+      die('Not allowed');
+    }
+
+    $sections = get_posts( array(
+      'posts_per_page' => -1,
+      'post_type'  => 'wp_coach_section',
+      'perm'       => 'readable',
+      'meta_query' => array(
+        array(
+          'key'     => '_wp_coach_course_id',
+          'value'   => $course_id,
+          'compare' => '=',
+        ),
+      ),
+    ) );
+
+    echo json_encode( $sections );
+    die;
   }
 
 
