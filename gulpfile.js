@@ -1,6 +1,8 @@
 'use strict';
 
 var gulp        = require('gulp'),
+    browserify  = require('browserify'),
+    source      = require('vinyl-source-stream'),
     rename      = require('gulp-rename'),
     uglify      = require('gulp-uglify'),
     minifyCSS   = require('gulp-minify-css'),
@@ -17,7 +19,8 @@ gulp.task('serve', ['sass'], function() {
 
     gulp.watch("./lib/backend/assets/scss/**/*.scss", ['sass']);
     gulp.watch(["./lib/backend/assets/css/*.css", "!./lib/backend/assets/css/**/*.min.css"], ['minify-css']);
-    gulp.watch(["./lib/backend/assets/js/**/*.js", "!./lib/backend/assets/js/**/*.min.js"], ['minify-js']);
+    //gulp.watch(["./lib/backend/assets/js/**/*.js", "!./lib/backend/assets/js/**/*.min.js"], ['minify-js']);
+    gulp.watch(["./lib/backend/assets/js/**/*.js", "!./lib/backend/assets/js/bundle.js"], ['browserify']);
     gulp.watch(["./**/*.mustache", "./lib/backend/assets/js/**/*.js", "!./lib/backend/assets/js/**/*.min.js"]).on('change', reload);
 });
 
@@ -40,6 +43,15 @@ gulp.task('minify-js', function() {
   return gulp.src('./lib/backend/assets/js/vimeography.js')
     .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('./lib/backend/assets/js/'));
+});
+
+gulp.task('browserify', function() {
+  return browserify('./lib/backend/assets/js/app.js')
+    .bundle()
+    //Pass desired output filename to vinyl-source-stream
+    .pipe(source('bundle.js'))
+    // Start piping stream to tasks!
     .pipe(gulp.dest('./lib/backend/assets/js/'));
 });
 
