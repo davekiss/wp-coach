@@ -37,7 +37,16 @@ class WP_Coach_API_Courses {
 
 
   public function show() {
-    return;
+    $id = intval( $_GET['id'] );
+
+    if ( ! current_user_can('read_wp_coach_course', $id ) ) {
+      die('Not allowed');
+    }
+
+    $course = get_post( $id );
+
+    echo json_encode( $course );
+    die;
   }
 
 
