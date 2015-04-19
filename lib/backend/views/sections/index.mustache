@@ -1,12 +1,39 @@
-<p data-bind="visible: sections().length > 0">This course has <span data-bind="text: sections().length"></span> section(s)</p>
-<span data-bind="visible: sections().length == 0">No sections found. Ready to add one?</span>
+<button class="wp-coach-button wp-coach-add-section"><i class="fa fa-plus-circle"></i> Add Section</button>
 
-<p></p>
+<table class="wp-coach-table">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Name</th>
+      <th>Lessons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><i class="fa fa-check-circle-o"></i></td>
+      <td>Published Section</td>
+      <td>Edit Lessons</td>
+    </tr>
+    <tr>
+      <td><i class="fa fa-dot-circle-o"></i></td>
+      <td>Protected Section</td>
+      <td>Edit Lessons</td>
+    </tr>
+    <tr>
+      <td><i class="fa fa-circle-o"></i></td>
+      <td>Draft Section</td>
+      <td>Edit Lessons</td>
+    </tr>
+  </tbody>
+</table>
+
+<p data-bind="visible: sections().length > 0">This course has <span data-bind="text: sections().length"></span> section(s)</p>
+<p data-bind="visible: sections().length == 0">No Sections</p>
 
 <ul data-bind="foreach: sections, visible: sections().length > 0">
   <li>
     Hello, <span data-bind="text: title"> </span>!
-  </li> 
+  </li>
 </ul>
 
 

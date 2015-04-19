@@ -11,5 +11,48 @@
   padding: 5px;
   margin: 0; }
 
+.wp-coach-button {
+  background-color: #ecf0f1;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 0;
+  font-size: 14px; }
+  .wp-coach-button:hover {
+    cursor: pointer; }
+  .wp-coach-button i {
+    margin-right: 5px; }
+
+.wp-coach-add-section {
+  background-color: #2ecc71;
+  color: #fafafa;
+  margin: 10px 0 0; }
+
+.wp-coach-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+  /* Icons */ }
+  .wp-coach-table tr {
+    border-bottom: 1px solid #eee; }
+  .wp-coach-table td, .wp-coach-table th {
+    padding: 14px;
+    text-align: left; }
+  .wp-coach-table th {
+    font-weight: bold;
+    text-transform: uppercase; }
+  .wp-coach-table td {
+    font-size: 14px;
+    color: #666; }
+  .wp-coach-table .fa {
+    font-size: 22px; }
+  .wp-coach-table .fa-check-circle-o {
+    color: #27ae60; }
+  .wp-coach-table .fa-plus-circle {
+    color: #2ecc71; }
+  .wp-coach-table .fa-dot-circle-o {
+    color: #e67e22; }
+  .wp-coach-table .fa-circle-o {
+    color: #f1c40f; }
+
 .lesson-editor-container {
   margin: 20px; }

@@ -1,0 +1,40 @@
+.wp-coach-table {
+
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+
+  tr {
+    border-bottom: 1px solid #eee;
+  }
+  td, th {
+    padding: 14px;
+    text-align: left;
+  }
+  th {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  td {
+    font-size: 14px;
+    color: #666;
+  }
+
+  /* Icons */
+  .fa {
+    font-size: 22px;
+  }
+  .fa-check-circle-o {
+    color: #27ae60;
+  }
+
+  .fa-plus-circle {
+    color: #2ecc71;
+  }
+  .fa-dot-circle-o {
+    color: #e67e22;
+  }
+  .fa-circle-o {
+    color: #f1c40f;
+  }
+}
