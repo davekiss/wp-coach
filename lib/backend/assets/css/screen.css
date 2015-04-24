@@ -25,7 +25,8 @@
 .wp-coach-add-section {
   background-color: #2ecc71;
   color: #fafafa;
-  margin: 10px 0 0; }
+  margin: 10px 0 0;
+  float: right; }
 
 .wp-coach-table {
   border-collapse: collapse;
@@ -43,16 +44,21 @@
   .wp-coach-table td {
     font-size: 14px;
     color: #666; }
-  .wp-coach-table .fa {
-    font-size: 22px; }
+  .wp-coach-table .wp-coach-sections-actions i {
+    cursor: pointer;
+    margin: 3px; }
+    .wp-coach-table .wp-coach-sections-actions i:hover {
+      opacity: .9; }
   .wp-coach-table .fa-check-circle-o {
     color: #27ae60; }
   .wp-coach-table .fa-plus-circle {
     color: #2ecc71; }
   .wp-coach-table .fa-dot-circle-o {
     color: #e67e22; }
-  .wp-coach-table .fa-circle-o {
+  .wp-coach-table .fa-circle-o, .wp-coach-table .fa-pencil {
     color: #f1c40f; }
+  .wp-coach-table .fa-times-circle-o {
+    color: #e74c3c; }
 
 .lesson-editor-container {
   margin: 20px; }
