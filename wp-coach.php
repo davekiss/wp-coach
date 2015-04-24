@@ -117,6 +117,13 @@ if ( ! class_exists( 'WP_Coach' ) ) {
       require_once WP_COACH_PATH . 'lib/api/endpoints/lessons.php';
       require_once WP_COACH_PATH . 'lib/includes/shortcode.php';
 
+      // Models
+      require_once WP_COACH_PATH . 'lib/core/model.php';
+      require_once WP_COACH_PATH . 'lib/core/collection.php';
+      require_once WP_COACH_PATH . 'lib/core/models/course.php';
+      require_once WP_COACH_PATH . 'lib/core/models/section.php';
+      require_once WP_COACH_PATH . 'lib/core/models/lesson.php';
+
       if ( is_admin() ) {
         require_once WP_COACH_PATH . 'lib/backend/includes/menu.php';
         require_once WP_COACH_PATH . 'lib/backend/includes/scripts.php';
@@ -130,4 +137,21 @@ if ( ! class_exists( 'WP_Coach' ) ) {
   }
 }
 
-WP_Coach::get_instance();
+/**
+ * The main function responsible for returning the one true WP_Coach
+ * Instance to functions everywhere.
+ *
+ * Use this function like you would a global variable, except without needing
+ * to declare the global.
+ *
+ * Example: <?php $coach = WP_Coach(); ?>
+ *
+ * @since 1.0
+ * @return object The one true WP_Coach Instance
+ */
+function WP_Coach() {
+  return WP_Coach::get_instance();
+}
+
+// Get WP Coach Running
+WP_Coach();
