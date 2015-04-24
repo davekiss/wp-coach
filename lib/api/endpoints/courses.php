@@ -3,30 +3,23 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class WP_Coach_API_Courses {
+class WP_Coach_API_Courses extends WP_Coach_API {
 
   public function __construct() {
     add_action( 'wp_ajax_wp_coach_api_courses_index',   array( $this, 'index' ) );
-    add_action( 'wp_ajax_wp_coach_api_courses_new',     array( $this, 'new_course') );
     add_action( 'wp_ajax_wp_coach_api_courses_create',  array( $this, 'create' ) );
     add_action( 'wp_ajax_wp_coach_api_courses_show',    array( $this, 'show' ) );
-    add_action( 'wp_ajax_wp_coach_api_courses_edit',    array( $this, 'edit' ) );
     add_action( 'wp_ajax_wp_coach_api_courses_update',  array( $this, 'update' ) );
     add_action( 'wp_ajax_wp_coach_api_courses_destroy', array( $this, 'destroy' ) );
   }
 
 
-  private function _before() {
+  protected function _before() {
     return;
   }
 
 
   public function index() {
-    return;
-  }
-
-
-  public function new_course() {
     return;
   }
 
@@ -38,20 +31,12 @@ class WP_Coach_API_Courses {
 
   public function show() {
     $id = intval( $_GET['id'] );
-
+    
     if ( ! current_user_can('read_wp_coach_course', $id ) ) {
       die('Not allowed');
     }
 
-    $course = get_post( $id );
-
-    echo json_encode( $course );
-    die;
-  }
-
-
-  public function edit() {
-    return;
+    return $this->output( WP_Coach_Course::find( $id ) );
   }
 
 
@@ -65,7 +50,7 @@ class WP_Coach_API_Courses {
   }
 
 
-  private function _after() {
+  protected function _after() {
     return;
   }
 }

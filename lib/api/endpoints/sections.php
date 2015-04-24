@@ -3,56 +3,75 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class WP_Coach_API_Sections {
+class WP_Coach_API_Sections extends WP_Coach_API  {
 
   public function __construct() {
     add_action( 'wp_ajax_wp_coach_api_sections_index',   array( $this, 'index' ) );
-    add_action( 'wp_ajax_wp_coach_api_sections_new',     array( $this, 'new_section') );
     add_action( 'wp_ajax_wp_coach_api_sections_create',  array( $this, 'create' ) );
     add_action( 'wp_ajax_wp_coach_api_sections_show',    array( $this, 'show' ) );
-    add_action( 'wp_ajax_wp_coach_api_sections_edit',    array( $this, 'edit' ) );
     add_action( 'wp_ajax_wp_coach_api_sections_update',  array( $this, 'update' ) );
     add_action( 'wp_ajax_wp_coach_api_sections_destroy', array( $this, 'destroy' ) );
   }
 
 
-  private function _before() {
+  protected function _before() {
+    // Check nonce
     return;
   }
 
 
   public function index() {
-    $course_id = intval( $_GET['course_id'] );
 
-    if ( ! current_user_can('read_wp_coach_course', $course_id ) ) {
+    if ( ! current_user_can('read_wp_coach_course', $this->course_id ) ) {
       die('Not allowed');
     }
 
-    $sections = get_posts( array(
+    $query = array(
       'posts_per_page' => -1,
       'post_type'  => 'wp_coach_section',
       'perm'       => 'readable',
       'meta_query' => array(
         array(
           'key'     => '_wp_coach_course_id',
-          'value'   => $course_id,
+          'value'   => $this->course_id,
           'compare' => '=',
         ),
       ),
-    ) );
+    );
 
-    echo json_encode( $sections );
-    die;
+    if ( current_user_can('edit_wp_coach_course', $this->course_id) ) {
+      $query['post_status'] = 'any';
+    }
+
+    $sections = get_posts( $query );
+    return $this->output( $sections );
   }
 
 
-  public function new_section() {
-    return;
-  }
-
-
+  /**
+   * Create a new section for a given course.
+   *
+   * @return mixed
+   */
   public function create() {
-    return;
+
+    if ( ! current_user_can('edit_wp_coach_course', $this->course_id ) ) {
+      die('Not allowed');
+    }
+
+    // Validate and create lesson
+    $section_id = wp_insert_post( array(
+        'post_status'  => 'draft',
+        'post_type'    => 'wp_coach_section',
+      )
+    );
+
+    if ( ! empty($section_id) ) {
+      update_post_meta($section_id, '_wp_coach_course_id', $this->course_id );
+      $section = get_post($section_id);
+      echo json_encode($section);
+      die;
+    }
   }
 
 
@@ -61,12 +80,8 @@ class WP_Coach_API_Sections {
   }
 
 
-  public function edit() {
-    return;
-  }
-
-
   public function update() {
+    //        'post_title'   => wp_strip_all_tags( $_POST['title'] ),
     return;
   }
 
@@ -76,7 +91,7 @@ class WP_Coach_API_Sections {
   }
 
 
-  private function _after() {
+  protected function _after() {
     return;
   }
 }

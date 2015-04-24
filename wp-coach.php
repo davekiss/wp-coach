@@ -65,7 +65,6 @@ if ( ! class_exists( 'WP_Coach' ) ) {
         new WP_Coach_Init;
         new WP_Coach_Capabilities;
         new WP_Coach_Post_Types;
-        new WP_Coach_API;
         new WP_Coach_Shortcode;
       }
 
@@ -113,6 +112,9 @@ if ( ! class_exists( 'WP_Coach' ) ) {
       require_once WP_COACH_PATH . 'lib/includes/capabilities.php';
       require_once WP_COACH_PATH . 'lib/includes/post-types.php';
       require_once WP_COACH_PATH . 'lib/api/api.php';
+      require_once WP_COACH_PATH . 'lib/api/endpoints/courses.php';
+      require_once WP_COACH_PATH . 'lib/api/endpoints/sections.php';
+      require_once WP_COACH_PATH . 'lib/api/endpoints/lessons.php';
       require_once WP_COACH_PATH . 'lib/includes/shortcode.php';
 
       if ( is_admin() ) {
