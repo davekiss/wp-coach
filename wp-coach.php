@@ -57,9 +57,9 @@ if ( ! class_exists( 'WP_Coach' ) ) {
           new WP_Coach_Base;
           new WP_Coach_Admin_Menu;
           new WP_Coach_Admin_Scripts;
-          self::$instance->courses = new WP_Coach_Courses;
-          self::$instance->sections = new WP_Coach_Sections;
-          self::$instance->lessons = new WP_Coach_Lessons;
+          self::$instance->courses  = new WP_Coach_Backend_Courses_Controller;
+          self::$instance->sections = new WP_Coach_Backend_Sections_Controller;
+          self::$instance->lessons  = new WP_Coach_Backend_Lessons_Controller;
         }
 
         new WP_Coach_Init;

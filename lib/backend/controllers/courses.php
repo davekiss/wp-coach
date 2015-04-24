@@ -3,7 +3,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class WP_Coach_Courses extends WP_Coach_Base {
+class WP_Coach_Backend_Courses_Controller extends WP_Coach_Base {
   public function __construct() {
     parent::__construct();
     add_filter('parse_query', array($this, 'only_show_users_courses') );
