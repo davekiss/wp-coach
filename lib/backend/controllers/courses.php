@@ -11,6 +11,53 @@ class WP_Coach_Backend_Courses_Controller extends WP_Coach_Base {
     add_action( 'add_meta_boxes_wp_coach_course', array( $this, 'add_meta_boxes' ) );
     add_action( 'save_post', array( $this, 'save' ) );
     add_action( 'admin_enqueue_scripts', array($this, 'add_scripts') );
+    add_action( 'load-post.php', array( $this, 'set_js_vars') );
+  }
+
+  /**
+   * [set_js_vars description]
+   * @param [type] $post_id [description]
+   */
+  public function set_js_vars() {
+
+    $post_id = isset( $_GET['post'] ) ? intval( $_GET['post'] ) : '';
+
+    if ( empty($post_id) ) {
+      return;
+    }
+
+    $type = get_post_type( $post_id );
+
+    if ( $type !== 'wp_coach_course' ) {
+      return;
+    }
+
+    $course = WP_Coach_Course::find( $post_id );
+    $sections = $course->sections;
+
+    $reshuffled_data = array(
+      'l10n_print_after' => sprintf('WP_Coach.courses["%1$s"] = %2$s',
+        $post_id,
+        $course
+      )
+    );
+
+    echo '<pre>';
+    var_dump($reshuffled_data);
+    echo '</pre>';
+    die;
+
+    wp_localize_script("wp-coach-backend",
+      "WP_Coach = window.WP_Coach || {};
+      window.WP_Coach.courses = window.WP_Coach.courses || {};
+      window.WP_Coach.courses['{$post_id}'] = window.WP_Coach.courses['{$post_id}'] || {};
+      WP_Coach.unused",
+    $reshuffled_data);
+
+
+
+
+    wp_localize_script( 'wp-coach-backend', 'WP_Coach', array( 'nonce' => wp_create_nonce( 'wp_json' ), 'ajax_url' => admin_url('admin-ajax.php'), 'course_id' => $post_id ) );
   }
 
   /**
@@ -34,7 +81,7 @@ class WP_Coach_Backend_Courses_Controller extends WP_Coach_Base {
    */
   public function add_scripts($hook) {
     if ( 'post.php' != $hook ) {
-        return;
+      return;
     }
   }
 
