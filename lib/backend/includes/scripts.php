@@ -27,12 +27,7 @@ class WP_Coach_Admin_Scripts {
     wp_register_script('knockback', '//cdnjs.cloudflare.com/ajax/libs/knockback/0.20.5/knockback.min.js', array('backbone', 'knockout'));
 
     wp_register_style( 'wp-coach-backend', WP_COACH_URL . 'lib/backend/assets/css/screen.css');
-    wp_register_script( 'wp-coach-backend', WP_COACH_URL . 'lib/backend/assets/js/bundle.js', array('jquery', 'backbone', 'knockout', 'knockback') );
-
     wp_enqueue_style( 'wp-coach-backend');
-
-    wp_localize_script( 'wp-coach-backend', 'WP_Coach', array( 'nonce' => wp_create_nonce( 'wp_json' ), 'ajax_url' => admin_url('admin-ajax.php') ) );
-    wp_enqueue_script( 'wp-coach-backend');
   }
 
 
