@@ -6,21 +6,31 @@
 
   tr {
     border-bottom: 1px solid #eee;
+
+    &.wp-coach-lesson {
+      background-color: #fafafa;
+    }
   }
+
   td, th {
     padding: 14px;
     text-align: left;
   }
+
   th {
     font-weight: bold;
     text-transform: uppercase;
   }
+
   td {
     font-size: 14px;
     color: #666;
+    text-transform: capitalize;
   }
 
-  .wp-coach-sections-actions {
+  .wp-coach-actions {
+    text-align: right;
+
     i {
       cursor: pointer;
       margin: 3px;
