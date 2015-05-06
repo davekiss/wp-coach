@@ -9,10 +9,10 @@
     </tr>
   </thead>
   <tbody data-bind="foreach: sections, visible: sections().length > 0">
-    <tr>
-      <td><i class="fa fa-circle-o fa-lg"></i> Draft</td>
+    <tr class="wp-coach-section">
+      <td><i class="fa fa-circle-o fa-lg"></i> <span data-bind="text: post_status"></span></td>
       <td data-bind="text: post_title"></td>
-      <td class="wp-coach-sections-actions">
+      <td class="wp-coach-actions">
         <i class="fa fa-plus-circle fa-lg"></i>
         <i class="fa fa-pencil fa-lg"></i>
         <i class="fa fa-cog fa-lg"></i>
@@ -20,12 +20,12 @@
       </td>
     </tr>
 
+
    <!-- ko foreach: lessons -->
-      <tr>
-        <td><i class="fa fa-circle-o fa-lg"></i> Draft</td>
-        <td data-bind="text: post_title"></td>
-        <td class="wp-coach-sections-actions">
-          <i class="fa fa-plus-circle fa-lg"></i>
+      <tr class="wp-coach-lesson">
+        <td><i class="fa fa-circle-o fa-lg"></i> <span data-bind="text: post_status"></span></td>
+        <td>&#151; <span data-bind="text: post_title"></span></td>
+        <td class="wp-coach-actions">
           <i class="fa fa-pencil fa-lg"></i>
           <i class="fa fa-cog fa-lg"></i>
           <i class="fa fa-times-circle-o fa-lg"></i>
