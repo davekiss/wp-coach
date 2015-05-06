@@ -8,6 +8,7 @@ Author: Dave Kiss
 Author URI: http://davekiss.com
 License: GPL3
 Text Domain: wp-coach
+Requires: PHP 5.4
 */
 
 if ( ! class_exists( 'WP_Coach' ) ) {

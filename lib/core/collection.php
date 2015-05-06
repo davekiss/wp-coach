@@ -1,14 +1,14 @@
 <?php
 
-class WP_Coach_Collection implements IteratorAggregate {
+class WP_Coach_Collection implements IteratorAggregate, JsonSerializable {
 
-  public $collection = array();
-  public $collection_class;
+  private $collection = array();
+  private $collection_class;
 
 
   /**
    * Set the collection that should be iterated
-   * @param [type] $collection [description]
+   * @param mixed $collection empty, single WP_Coach_{model}, or array of WP_Coach_{model}
    */
   public function __construct( $collection ) {
     
@@ -48,6 +48,16 @@ class WP_Coach_Collection implements IteratorAggregate {
    */
   public function getIterator() {
     return new ArrayIterator($this->collection);
+  }
+
+
+  /**
+   * Tells the serializer to use the collection when encoding to JSON
+   * 
+   * @return array
+   */
+  public function jsonSerialize() {
+    return $this->collection;
   }
 
 }
