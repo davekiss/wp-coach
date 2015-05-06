@@ -35,29 +35,25 @@ class WP_Coach_Backend_Courses_Controller extends WP_Coach_Base {
     $course = WP_Coach_Course::find( $post_id );
     $sections = $course->sections;
 
+    wp_register_script( 'wp-coach-backend', WP_COACH_URL . 'lib/backend/assets/js/bundle.js', array('jquery', 'backbone', 'knockout', 'knockback') );
     $reshuffled_data = array(
-      'l10n_print_after' => sprintf('WP_Coach.courses["%1$s"] = %2$s',
-        $post_id,
-        $course
+      'l10n_print_after' => sprintf('WP_Coach.courses.push(%1$s)',
+        json_encode( $course )
       )
     );
 
-    echo '<pre>';
-    var_dump($reshuffled_data);
-    echo '</pre>';
-    die;
-
-    wp_localize_script("wp-coach-backend",
-      "WP_Coach = window.WP_Coach || {};
-      window.WP_Coach.courses = window.WP_Coach.courses || {};
-      window.WP_Coach.courses['{$post_id}'] = window.WP_Coach.courses['{$post_id}'] || {};
-      WP_Coach.unused",
+    wp_localize_script('wp-coach-backend',
+      sprintf('
+        WP_Coach = window.WP_Coach || {};
+        window.WP_Coach.courses = window.WP_Coach.courses || [];
+        window.WP_Coach.nonce = "%1$s";
+        window.WP_Coach.ajax_url = "%2$s";
+        WP_Coach.unused',
+        wp_create_nonce('wp_coach_admin'),
+        admin_url('admin-ajax.php')
+      ),
     $reshuffled_data);
-
-
-
-
-    wp_localize_script( 'wp-coach-backend', 'WP_Coach', array( 'nonce' => wp_create_nonce( 'wp_json' ), 'ajax_url' => admin_url('admin-ajax.php'), 'course_id' => $post_id ) );
+    wp_enqueue_script( 'wp-coach-backend');
   }
 
   /**
