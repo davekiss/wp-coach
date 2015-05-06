@@ -5,10 +5,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 abstract class WP_Coach_Model {
 
-  protected $WP_Post;
-
   public function __construct( $WP_Post ) {
-    $this->WP_Post = $WP_Post;
+    $post_vars = get_object_vars( $WP_Post );
+
+    if ( is_array( $post_vars) ) {
+      foreach ($post_vars as $key => $value) {
+        $this->{$key} = $value;
+      }
+    }
   }
 
 
@@ -107,11 +111,6 @@ abstract class WP_Coach_Model {
     // If it is a normal or cached property, just return it
     if ( property_exists($this, $prop_name) ) {
       return;
-    }
-
-    // If the property exists in the WP_Post, return that instead
-    if ( property_exists($this, 'WP_Post') && property_exists($this->WP_Post, $prop_name) ) {
-      return $this->WP_Post->{$prop_name};
     }
 
     $class_name = get_class($this);
