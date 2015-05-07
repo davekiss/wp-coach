@@ -1,70 +1,58 @@
+<button class="wp-coach-button wp-coach-add-section" data-bind="click: addSection"><i class="fa fa-plus-circle"></i> Add Section</button>
+
+<table class="wp-coach-table">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody data-bind="foreach: sections, visible: sections().length > 0">
+    <tr class="wp-coach-section">
+      <td><i class="fa fa-circle-o fa-lg"></i> <span data-bind="text: post_status"></span></td>
+      <td data-bind="text: post_title"></td>
+      <td class="wp-coach-actions">
+        <i class="fa fa-plus-circle fa-lg"></i>
+        <i class="fa fa-pencil fa-lg"></i>
+        <i class="fa fa-cog fa-lg"></i>
+        <i class="fa fa-times-circle-o fa-lg"></i>
+      </td>
+    </tr>
+
+
+   <!-- ko foreach: lessons -->
+      <tr class="wp-coach-lesson">
+        <td><i class="fa fa-circle-o fa-lg"></i> <span data-bind="text: post_status"></span></td>
+        <td>&#151; <span data-bind="text: post_title"></span></td>
+        <td class="wp-coach-actions">
+          <i class="fa fa-pencil fa-lg"></i>
+          <i class="fa fa-cog fa-lg"></i>
+          <i class="fa fa-times-circle-o fa-lg"></i>
+        </td>
+     </tr>
+   <!-- /ko -->
+
+  </tbody>
+</table>
+
 <p data-bind="visible: sections().length > 0">This course has <span data-bind="text: sections().length"></span> section(s)</p>
-<span data-bind="visible: sections().length == 0">No sections found. Ready to add one?</span>
+<p data-bind="visible: sections().length == 0">No Sections</p>
 
-<p></p>
-
-<ul data-bind="foreach: sections, visible: sections().length > 0">
-  <li>
-    Hello, <span data-bind="text: title"> </span>!
-  </li> 
-</ul>
-
-
-<form data-bind="submit: addSection">
-  <label for="section-title">Section Title</label>
-  <input id="section-title" type="text" value="" />
-  <input type="submit" class="button" value="Add Section" />
-  <button data-bind="click: addSection">Add hurr</button>
-</form>
-
-
-<a href="{{new_lesson_url}}" class="button wp-coach-add-lesson" title="">Add a Section</a>
-
+<i class="fa fa-dot-circle-o"></i> Protected
+<td><i class="fa fa-check-circle-o"></i> Published</td>
 
 <script>
 (function($){
   $(document).ready(function(){
 
-/*
     $('.wp-coach-add-lesson').magnificPopup({
       type:'iframe',
       midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
     });
-*/
-  });
 
-  // Hook into the heartbeat-send
-  $(document).on('heartbeat-send', function(e, data) {
-    data['wp_coach_heartbeat'] = {
-      action: 'get_course_modules',
-      course_id: 18714
-    };
-  });
+    $('.wp-coach-add-lesson').click(function(e){e.preventDefault();});
 
-  // Listen for the custom event "heartbeat-tick" on $(document).
-  $(document).on( 'heartbeat-tick', function(e, data) {
-
-    if ( ! data['wp-coach-modules'] ) {
-      return;
-    }
-
-    var modules = $.parseJSON( data['wp-coach-modules'] );
-
-    //console.log( data['wp-coach-modules'] );
-    var html = '';
-    $.each(modules, function(index, lesson){
-      var link = $('<a />', {
-        href: '#',
-        text: lesson.post_title
-      });
-      var li = $('<li />', {
-        html: link.prop('outerHTML')
-      });
-
-      html = html + li.prop('outerHTML');
-    });
-
-    $('#wp-coach-modules ul').html(html);
   });
 
 })(jQuery)

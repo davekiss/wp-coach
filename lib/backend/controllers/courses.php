@@ -3,7 +3,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class WP_Coach_Courses extends WP_Coach_Base {
+class WP_Coach_Backend_Courses_Controller extends WP_Coach_Base {
   public function __construct() {
     parent::__construct();
     add_filter('parse_query', array($this, 'only_show_users_courses') );
@@ -11,6 +11,49 @@ class WP_Coach_Courses extends WP_Coach_Base {
     add_action( 'add_meta_boxes_wp_coach_course', array( $this, 'add_meta_boxes' ) );
     add_action( 'save_post', array( $this, 'save' ) );
     add_action( 'admin_enqueue_scripts', array($this, 'add_scripts') );
+    add_action( 'load-post.php', array( $this, 'set_js_vars') );
+  }
+
+  /**
+   * [set_js_vars description]
+   * @param [type] $post_id [description]
+   */
+  public function set_js_vars() {
+
+    $post_id = isset( $_GET['post'] ) ? intval( $_GET['post'] ) : '';
+
+    if ( empty($post_id) ) {
+      return;
+    }
+
+    $type = get_post_type( $post_id );
+
+    if ( $type !== 'wp_coach_course' ) {
+      return;
+    }
+
+    $course = WP_Coach_Course::find( $post_id );
+    $sections = $course->sections;
+
+    wp_register_script( 'wp-coach-backend', WP_COACH_URL . 'lib/backend/assets/js/bundle.js', array('jquery', 'backbone', 'knockout', 'knockback') );
+    $reshuffled_data = array(
+      'l10n_print_after' => sprintf('WP_Coach.courses.push(%1$s)',
+        json_encode( $course )
+      )
+    );
+
+    wp_localize_script('wp-coach-backend',
+      sprintf('
+        WP_Coach = window.WP_Coach || {};
+        window.WP_Coach.courses = window.WP_Coach.courses || [];
+        window.WP_Coach.nonce = "%1$s";
+        window.WP_Coach.ajax_url = "%2$s";
+        WP_Coach.unused',
+        wp_create_nonce('wp_coach_admin'),
+        admin_url('admin-ajax.php')
+      ),
+    $reshuffled_data);
+    wp_enqueue_script( 'wp-coach-backend');
   }
 
   /**
@@ -34,7 +77,7 @@ class WP_Coach_Courses extends WP_Coach_Base {
    */
   public function add_scripts($hook) {
     if ( 'post.php' != $hook ) {
-        return;
+      return;
     }
   }
 

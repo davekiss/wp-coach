@@ -49,9 +49,9 @@ class WP_Coach_Init extends WP_Coach {
     load_plugin_textdomain('wp-coach', false, dirname( WP_COACH_BASENAME ) . '/languages/');
   }
 
+
   /**
    * [add_roles description]
-   * Todo: Add custom caps here, eg.: edit_wp_coach_course etc.
    */
   public function add_roles() {
     add_role( 'wp_coach_educator',  __('Educator', 'wp-coach'),  array( 'read' => true, ) );

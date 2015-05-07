@@ -3,7 +3,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class WP_Coach_Lessons extends WP_Coach_Base {
+class WP_Coach_Backend_Lessons_Controller extends WP_Coach_Base {
 
   /**
    * The heading for the rendered page

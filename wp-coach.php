@@ -6,9 +6,9 @@ Description: WP Coach transforms your website into a training epicenter.
 Version: 1.0
 Author: Dave Kiss
 Author URI: http://davekiss.com
-Depends: JSON REST API
 License: GPL3
 Text Domain: wp-coach
+Requires: PHP 5.4
 */
 
 if ( ! class_exists( 'WP_Coach' ) ) {
@@ -58,15 +58,14 @@ if ( ! class_exists( 'WP_Coach' ) ) {
           new WP_Coach_Base;
           new WP_Coach_Admin_Menu;
           new WP_Coach_Admin_Scripts;
-          self::$instance->courses = new WP_Coach_Courses;
-          self::$instance->sections = new WP_Coach_Sections;
-          self::$instance->lessons = new WP_Coach_Lessons;
+          self::$instance->courses  = new WP_Coach_Backend_Courses_Controller;
+          self::$instance->sections = new WP_Coach_Backend_Sections_Controller;
+          self::$instance->lessons  = new WP_Coach_Backend_Lessons_Controller;
         }
 
         new WP_Coach_Init;
         new WP_Coach_Capabilities;
         new WP_Coach_Post_Types;
-        new WP_Coach_API;
         new WP_Coach_Shortcode;
       }
 
@@ -114,12 +113,19 @@ if ( ! class_exists( 'WP_Coach' ) ) {
       require_once WP_COACH_PATH . 'lib/includes/capabilities.php';
       require_once WP_COACH_PATH . 'lib/includes/post-types.php';
       require_once WP_COACH_PATH . 'lib/api/api.php';
+      require_once WP_COACH_PATH . 'lib/api/endpoints/courses.php';
+      require_once WP_COACH_PATH . 'lib/api/endpoints/sections.php';
+      require_once WP_COACH_PATH . 'lib/api/endpoints/lessons.php';
       require_once WP_COACH_PATH . 'lib/includes/shortcode.php';
 
+      // Models
+      require_once WP_COACH_PATH . 'lib/core/model.php';
+      require_once WP_COACH_PATH . 'lib/core/collection.php';
+      require_once WP_COACH_PATH . 'lib/core/models/course.php';
+      require_once WP_COACH_PATH . 'lib/core/models/section.php';
+      require_once WP_COACH_PATH . 'lib/core/models/lesson.php';
+
       if ( is_admin() ) {
-        if ( ! class_exists('Plugin_Dependencies_Loader') ) {
-          require_once WP_COACH_PATH . 'vendor/plugin-dependencies/plugin-dependencies.php';
-        }
         require_once WP_COACH_PATH . 'lib/backend/includes/menu.php';
         require_once WP_COACH_PATH . 'lib/backend/includes/scripts.php';
 
@@ -132,4 +138,21 @@ if ( ! class_exists( 'WP_Coach' ) ) {
   }
 }
 
-WP_Coach::get_instance();
+/**
+ * The main function responsible for returning the one true WP_Coach
+ * Instance to functions everywhere.
+ *
+ * Use this function like you would a global variable, except without needing
+ * to declare the global.
+ *
+ * Example: <?php $coach = WP_Coach(); ?>
+ *
+ * @since 1.0
+ * @return object The one true WP_Coach Instance
+ */
+function WP_Coach() {
+  return WP_Coach::get_instance();
+}
+
+// Get WP Coach Running
+WP_Coach();

@@ -20,3 +20,26 @@
   }
 
 }
+
+.wp-coach-button {
+  background-color: #ecf0f1;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 0;
+  font-size: 14px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  i {
+    margin-right: 5px;
+  }
+}
+
+.wp-coach-add-section {
+  background-color: #2ecc71;
+  color: #fafafa;
+  margin: 10px 0 0;
+  float: right;
+}
