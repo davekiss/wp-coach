@@ -1,0 +1,20 @@
+{
+  "name": "wp-coach",
+  "version": "0.0.1",
+  "homepage": "https://github.com/davekiss/wp-coach",
+  "authors": [
+    "Dave Kiss <dave@davekiss.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "magnific-popup": "~1.0.0",
+    "kendo-ui": "~2015.1.511"
+  }
+}
