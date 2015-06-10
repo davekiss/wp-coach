@@ -27,6 +27,17 @@ abstract class WP_Coach_API {
   abstract protected function destroy();
   abstract protected function _after();
 
+  /**
+   * Make sure the request originated from the admin for now.
+   *
+   * @return mixed
+   */
+  protected static function _verify_nonce() {
+    if ( ! wp_verify_nonce( $_SERVER['HTTP_X_WP_NONCE'], 'wp_coach_admin' ) ) {
+      status_header( 401 );
+      die('Not allowed');
+    }
+  }
 
   /**
    * Handles the output of the payload response object
@@ -35,27 +46,9 @@ abstract class WP_Coach_API {
    * @param  mixed $payload
    * @return string
    */
-  public function output( $payload ) {
-    $payload = json_encode($payload);
-
-    if ( self::_is_ajax() ) {
-      echo $payload;
-      die;
-    } else {
-      return $payload;
-    }
-  }
-
-  /**
-   * [is_ajax description]
-   * @return boolean [description]
-   */
-  private static function _is_ajax() {
-    if (defined('DOING_AJAX') && DOING_AJAX) {
-      return TRUE;
-    } else {
-      return FALSE;
-    }
+  public static function output( $payload ) {
+    echo json_encode($payload);
+    die;
   }
 
 }
