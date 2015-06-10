@@ -76,9 +76,27 @@ class WP_Coach_API_Sections extends WP_Coach_API  {
   }
 
 
+  /**
+   * Update a section
+   *
+   * @return [type] [description]
+   */
   public function update() {
-    //        'post_title'   => wp_strip_all_tags( $_POST['title'] ),
-    return;
+
+    if ( ! current_user_can('edit_wp_coach_course', $this->course_id ) ) {
+      die('Not allowed');
+    }
+
+    $params = array_map( 'sanitize_text_field', $_REQUEST['payload'] );
+
+    $result = wp_update_post( array(
+      'ID'          => $params['ID'],
+      'post_title'  => $params['post_title'],
+      'post_status' => $params['post_status']
+    ) );
+
+    $status = $result == 0 ? 500 : 204;
+    die( status_header( $status ) );
   }
 
 
