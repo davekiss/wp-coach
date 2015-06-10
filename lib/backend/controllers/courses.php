@@ -86,7 +86,8 @@ class WP_Coach_Backend_Courses_Controller extends WP_Coach_Base {
    */
   public function add_meta_boxes($course) {
     add_meta_box('wp-coach-sections', 'Course Sections', array($this, 'sections_metabox'), 'wp_coach_course', 'normal', 'high' );
-    add_meta_box('wp-coach-course-settings', 'Course Settings', array($this, 'render_course_settings_metabox'), 'wp_coach_course', 'normal', 'high' );
+    // Not in v1
+    // add_meta_box('wp-coach-course-settings', 'Course Settings', array($this, 'render_course_settings_metabox'), 'wp_coach_course', 'normal', 'high' );
   }
 
   /**
@@ -95,7 +96,9 @@ class WP_Coach_Backend_Courses_Controller extends WP_Coach_Base {
    * @return [type]         [description]
    */
   public function render_course_settings_metabox($course) {
-    echo 'no settings';
+    $controller = WP_Coach::get_instance()->courses;
+    $template = $this->mustache->loadTemplate('courses/settings');
+    echo $template->render($controller);
   }
 
   /**
