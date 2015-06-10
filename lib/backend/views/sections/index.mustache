@@ -1,4 +1,7 @@
-<button class="wp-coach-button wp-coach-add-section" data-bind="click: addSection"><i class="fa fa-plus-circle"></i> Add Section</button>
+<p style="display:inline-block;float:left;" rv-show="sections.length | > 0">This course has <span rv-text="sections.length"></span> section<span rv-show="sections.length | > 1">s</span></p>
+<p style="display:inline-block;float:left;" rv-show="sections.length | = 0">No Sections</p>
+
+<button class="wp-coach-button wp-coach-add-section" rv-on-click="course.addSection"><i class="fa fa-plus-circle"></i> Add Section</button>
 
 <table class="wp-coach-table">
   <thead>
@@ -8,20 +11,26 @@
       <th>Actions</th>
     </tr>
   </thead>
-  <tbody data-bind="foreach: sections, visible: sections().length > 0">
-    <tr class="wp-coach-section">
-      <td><i class="fa fa-circle-o fa-lg"></i> <span data-bind="text: post_status"></span></td>
-      <td data-bind="text: post_title"></td>
+
+  <tbody>
+    <tr class="wp-coach-section" rv-evented-each-section="sections.models">
+      <td>
+        <i class="fa fa-circle-o fa-lg"></i>
+        <span rv-text="section:post_status" rv-addclass="section:post_status"></span>
+      </td>
+      <td>
+        <span rv-text="section:post_title" rv-hide="section.isEditingTitle" rv-on-click="section.startEditingTitle"></span>
+        <input type="text" style="width: 100%;" rv-show="section.isEditingTitle" rv-focus="section.isEditingTitle" rv-on-blur="section.stopEditingTitle" rv-value="section:post_title" rv-on-enter-key-press="section.stopEditingTitle" />
+      </td>
       <td class="wp-coach-actions">
-        <i class="fa fa-plus-circle fa-lg"></i>
-        <i class="fa fa-pencil fa-lg"></i>
-        <i class="fa fa-cog fa-lg"></i>
-        <i class="fa fa-times-circle-o fa-lg"></i>
+        <i class="fa fa-plus-circle fa-lg wp-coach-add-lesson" data-edit-lesson-url="{{new_lesson_url}}" data-tooltip="Add a Lesson" data-tooltip-position="top middle"></i>
+        <i class="fa fa-pencil fa-lg" data-tooltip="Edit Section" data-tooltip-position="top middle"></i>
+        <i class="fa fa-cog fa-lg" data-tooltip="Section Settings" data-tooltip-position="top middle"></i>
+        <i class="fa fa-times-circle-o fa-lg" data-tooltip="Delete Section" data-tooltip-position="top middle" rv-on-click="section.destroy"></i>
       </td>
     </tr>
 
 
-   <!-- ko foreach: lessons -->
       <tr class="wp-coach-lesson">
         <td><i class="fa fa-circle-o fa-lg"></i> <span data-bind="text: post_status"></span></td>
         <td>&#151; <span data-bind="text: post_title"></span></td>
@@ -31,29 +40,11 @@
           <i class="fa fa-times-circle-o fa-lg"></i>
         </td>
      </tr>
-   <!-- /ko -->
 
   </tbody>
 </table>
 
-<p data-bind="visible: sections().length > 0">This course has <span data-bind="text: sections().length"></span> section(s)</p>
-<p data-bind="visible: sections().length == 0">No Sections</p>
-
 <i class="fa fa-dot-circle-o"></i> Protected
 <td><i class="fa fa-check-circle-o"></i> Published</td>
 
-<script>
-(function($){
-  $(document).ready(function(){
-
-    $('.wp-coach-add-lesson').magnificPopup({
-      type:'iframe',
-      midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
-    });
-
-    $('.wp-coach-add-lesson').click(function(e){e.preventDefault();});
-
-  });
-
-})(jQuery)
-</script>
+<div id="wp-coach-event-capture" style="display: none;"></div>

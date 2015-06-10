@@ -1,0 +1,30 @@
+{
+  "main": "./js/app.js",
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "backbone.supermodel" : "./bower_components/backbone.supermodel/build/backbone.supermodel.min.js",
+    "magnific-popup"      : "./bower_components/magnific-popup/dist/jquery.magnific-popup.min.js",
+    "tether"              : "./bower_components/tether/tether.min.js",
+    "tether-drop"         : "./bower_components/tether-drop/dist/js/drop.min.js",
+    "tether-tooltip"      : "./bower_components/tether-tooltip/dist/js/tooltip.min.js"
+  },
+  "browserify-shim": {
+    "jquery"              : "global:jQuery",
+    "backbone"            : "global:Backbone",
+    "underscore"          : "global:_",
+    "rivets"              : "global:rivets",
+    "backbone.supermodel" : "Backbone.SuperModel",
+    "magnific-popup"      : "jQuery.magnificPopup",
+    "tether"              : "Tether",
+    "tether-drop"         : "Drop",
+    "tether-tooltip"      : "Tooltip"
+  },
+  "devDependencies": {
+    "browserify": "^10.2.3",
+    "browserify-shim": "^3.8.7"
+  }
+}

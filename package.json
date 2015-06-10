@@ -22,15 +22,16 @@
     ]
   },
   "browserify-shim": {
-    "jquery": "global:jQuery",
-    "backbone": "global:Backbone",
-    "ko": "global:ko",
-    "kb": "global:kb"
+    "jquery"                  : "global:jQuery",
+    "backbone"                : "global:Backbone",
+    "underscore"              : "global:_",
+    "rivets"                  : "global:rivets",
+    "backbone.supermodel"     : "Backbone.SuperModel"
   },
   "devDependencies": {
     "browser-sync": "^2.6.4",
-    "browserify": "^9.0.8",
-    "browserify-shim": "^3.8.2",
+    "browserify": "^10.2.3",
+    "browserify-shim": "^3.8.7",
     "gulp": "^3.8.11",
     "gulp-minify-css": "^1.0.0",
     "gulp-rename": "^1.2.2",

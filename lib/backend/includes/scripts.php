@@ -23,9 +23,10 @@ class WP_Coach_Admin_Scripts {
     wp_enqueue_style('magnific-popup');
     wp_enqueue_style('fontawesome');
 
-    wp_register_script('knockout', '//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js');
-    wp_register_script('knockback', '//cdnjs.cloudflare.com/ajax/libs/knockback/0.20.5/knockback.min.js', array('backbone', 'knockout'));
-    wp_register_script('backbone-relational', 'https://cdnjs.cloudflare.com/ajax/libs/backbone-relational/0.9.0/backbone-relational.min.js', array('backbone', 'knockout', 'knockback'));
+    wp_register_script('sightglass', WP_COACH_URL . 'lib/backend/assets/bower_components/sightglass/index.js');
+    wp_register_script('rivets', WP_COACH_URL . 'lib/backend/assets/bower_components/rivets/dist/rivets.js', array('sightglass') );
+    wp_register_script('rivets-backbone', WP_COACH_URL . 'lib/backend/assets/bower_components/rivets-backbone-adapter/rivets-backbone.js');
+    //wp_register_script('backbone-relational', WP_COACH_URL . 'lib/backend/assets/bower_components/backbone-relational/backbone-relational.js', array('backbone', 'rivets', 'rivets-backbone'));
 
     wp_register_style( 'wp-coach-backend', WP_COACH_URL . 'lib/backend/assets/css/screen.css');
     wp_enqueue_style( 'wp-coach-backend');
