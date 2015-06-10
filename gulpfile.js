@@ -1,5 +1,8 @@
 'use strict';
 
+// Enable Browserify Diagnostics
+// process.env.BROWSERIFYSHIM_DIAGNOSTICS=1
+
 var gulp        = require('gulp'),
     browserify  = require('browserify'),
     source      = require('vinyl-source-stream'),
@@ -9,19 +12,19 @@ var gulp        = require('gulp'),
     sass        = require('gulp-sass'),
     browserSync = require('browser-sync'),
     reload      = browserSync.reload;
- 
+
 // Static Server + watching scss/html files
 gulp.task('serve', ['sass'], function() {
 
     browserSync({
-        proxy: "vimeography.dev"
+        proxy: "https://vimeography.dev"
     });
 
     gulp.watch("./lib/backend/assets/scss/**/*.scss", ['sass']);
     gulp.watch(["./lib/backend/assets/css/*.css", "!./lib/backend/assets/css/**/*.min.css"], ['minify-css']);
     //gulp.watch(["./lib/backend/assets/js/**/*.js", "!./lib/backend/assets/js/**/*.min.js"], ['minify-js']);
-    gulp.watch(["./lib/backend/assets/js/**/*.js", "!./lib/backend/assets/js/bundle.js"], ['browserify']);
-    gulp.watch(["./**/*.mustache", "./lib/backend/assets/js/**/*.js", "!./lib/backend/assets/js/**/*.min.js"]).on('change', reload);
+    gulp.watch(["./lib/backend/assets/js/**/*.js", "!./lib/backend/assets/js/node_modules/**", "!./lib/backend/assets/js/bundle.js"], ['browserify']);
+    gulp.watch(["./lib/backend/assets/js/**/*.js", "!./lib/backend/assets/js/node_modules/**", "!./lib/backend/assets/js/**/*.min.js"]).on('change', reload);
 });
 
 // Compile sass into CSS & auto-inject into browsers
