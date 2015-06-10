@@ -76,7 +76,8 @@ class WP_Coach_API_Sections extends WP_Coach_API  {
 
 
   public function show() {
-    return;
+    // Not Implemented
+    status_header( 501 ); exit;
   }
 
 

@@ -15,12 +15,14 @@ class WP_Coach_API_Lessons extends WP_Coach_API {
 
 
   protected function _before() {
-    return;
+    // Not Implemented
+    status_header( 501 ); exit;
   }
 
 
   public function index() {
-    return;
+    // Not Implemented
+    status_header( 501 ); exit;
   }
 
 
@@ -30,21 +32,25 @@ class WP_Coach_API_Lessons extends WP_Coach_API {
 
 
   public function show() {
-    return;
+    // Not Implemented
+    status_header( 501 ); exit;
   }
 
 
   public function update() {
-    return;
+    // Not Implemented
+    status_header( 501 ); exit;
   }
 
 
   public function destroy() {
-    return;
+    // Not Implemented
+    status_header( 501 ); exit;
   }
 
 
   protected function _after() {
-    return;
+    // Not Implemented
+    status_header( 501 ); exit;
   }
 }

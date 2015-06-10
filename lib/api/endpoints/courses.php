@@ -15,23 +15,26 @@ class WP_Coach_API_Courses extends WP_Coach_API {
 
 
   protected function _before() {
-    return;
+    // Not Implemented
+    status_header( 501 ); exit;
   }
 
 
   public function index() {
-    return;
+    // Not Implemented
+    status_header( 501 ); exit;
   }
 
 
   public function create() {
-    return;
+    // Not Implemented
+    status_header( 501 ); exit;
   }
 
 
   public function show() {
     $id = intval( $_GET['id'] );
-    
+
     if ( ! current_user_can('read_wp_coach_course', $id ) ) {
       die('Not allowed');
     }
@@ -41,16 +44,19 @@ class WP_Coach_API_Courses extends WP_Coach_API {
 
 
   public function update() {
-    return;
+    // Not Implemented
+    status_header( 501 ); exit;
   }
 
 
   public function destroy() {
-    return;
+    // Not Implemented
+    status_header( 501 ); exit;
   }
 
 
   protected function _after() {
-    return;
+    // Not Implemented
+    status_header( 501 ); exit;
   }
 }
