@@ -2,3 +2,5 @@
 lib/backend/assets/bower_components
 lib/backend/assets/js/node_modules
 node_modules/
+.floo
+.flooignore
