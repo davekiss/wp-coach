@@ -66,6 +66,7 @@ if ( ! class_exists( 'WP_Coach' ) ) {
         new WP_Coach_Init;
         new WP_Coach_Capabilities;
         new WP_Coach_Post_Types;
+        new WP_Coach_API_Sections;
         new WP_Coach_Shortcode;
       }
 
