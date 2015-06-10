@@ -26,6 +26,14 @@
     font-size: 14px;
     color: #666;
     text-transform: capitalize;
+
+    input[type="text"] {
+      border:none;
+      box-shadow: none;
+      border-bottom: 1px solid #eaeaea;
+      padding: 0;
+      margin: 0;
+    }
   }
 
   .wp-coach-actions {

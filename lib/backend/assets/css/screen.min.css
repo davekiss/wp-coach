@@ -12,6 +12,7 @@
 .wp-coach-table td,.wp-coach-table th{padding:14px;text-align:left}
 .wp-coach-table th{font-weight:700;text-transform:uppercase}
 .wp-coach-table td{font-size:14px;color:#666;text-transform:capitalize}
+.wp-coach-table td input[type=text]{border:none;box-shadow:none;border-bottom:1px solid #eaeaea;padding:0;margin:0}
 .wp-coach-table .wp-coach-actions{text-align:right}
 .wp-coach-table .wp-coach-actions i{cursor:pointer;margin:3px}
 .wp-coach-table .wp-coach-actions i:hover{opacity:.9}
