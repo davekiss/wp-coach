@@ -11,12 +11,12 @@ abstract class WP_Coach_API {
    */
   protected $course_id;
 
-  public function __construct() { }
+  public function __construct() {
 
+    if ( isset( $_REQUEST['payload']['course_id'] ) ) {
+      $this->course_id = intval( $_REQUEST['payload']['course_id'] );
+    }
 
-  public function set_course( $course_id ) {
-    $this->course_id = $course_id;
-    return $this;
   }
 
   abstract protected function _before();
