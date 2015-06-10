@@ -27,7 +27,22 @@ class WP_Coach_API_Lessons extends WP_Coach_API {
 
 
   public function create() {
-    return;
+
+    if ( ! current_user_can('edit_wp_coach_course', $this->course_id ) ) {
+      status_header( 401 );
+      die('Not allowed');
+    }
+
+    $course = WP_Coach_Course::find( $this->course_id );
+    $section_id = intval( $_REQUEST['payload']['section_id'] );
+
+    $lesson = $course->sections->find( $section_id )->lessons->create( array(
+      'post_title' => wp_strip_all_tags( $_REQUEST['payload']['post_title'] )
+    ) );
+
+    status_header( 201 );
+    return $this->output( $lesson );
+
   }
 
 
