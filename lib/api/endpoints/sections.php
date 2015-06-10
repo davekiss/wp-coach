@@ -20,9 +20,12 @@ class WP_Coach_API_Sections extends WP_Coach_API  {
     parent::_verify_nonce();
   }
 
-
+  /**
+   * Retrieve all sections for a course
+   *
+   * @return [type] [description]
+   */
   public function index() {
-
     if ( ! current_user_can('read_wp_coach_course', $this->course_id ) ) {
       die('Not allowed');
     }
@@ -70,6 +73,11 @@ class WP_Coach_API_Sections extends WP_Coach_API  {
   }
 
 
+  /**
+   * Get a single section from a course
+   *
+   * @return [type] [description]
+   */
   public function show() {
     // Not Implemented
     status_header( 501 ); exit;
@@ -100,6 +108,11 @@ class WP_Coach_API_Sections extends WP_Coach_API  {
   }
 
 
+  /**
+   * Deletes a section from a course
+   *
+   * @return void
+   */
   public function destroy() {
     return;
   }
