@@ -57,22 +57,16 @@ class WP_Coach_API_Sections extends WP_Coach_API  {
   public function create() {
 
     if ( ! current_user_can('edit_wp_coach_course', $this->course_id ) ) {
+      status_header( 401 );
       die('Not allowed');
     }
 
-    // Validate and create lesson
-    $section_id = wp_insert_post( array(
-        'post_status'  => 'draft',
-        'post_type'    => 'wp_coach_section',
-      )
-    );
-
-    if ( ! empty($section_id) ) {
-      update_post_meta($section_id, '_wp_coach_course_id', $this->course_id );
-      $section = get_post($section_id);
-      echo json_encode($section);
-      die;
-    }
+    $course = WP_Coach_Course::find( $this->course_id );
+    $section = $course->sections->create( array(
+      'post_title' => wp_strip_all_tags( $_REQUEST['payload']['post_title'] )
+    ) );
+    status_header( 201 );
+    return $this->output( $section );
   }
 
 
