@@ -17,8 +17,7 @@ class WP_Coach_API_Sections extends WP_Coach_API  {
 
 
   protected function _before() {
-    // Check nonce
-    return;
+    parent::_verify_nonce();
   }
 
 
