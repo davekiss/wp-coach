@@ -6,6 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class WP_Coach_API_Sections extends WP_Coach_API  {
 
   public function __construct() {
+    parent::__construct();
+
     add_action( 'wp_ajax_wp_coach_api_sections_index',   array( $this, 'index' ) );
     add_action( 'wp_ajax_wp_coach_api_sections_create',  array( $this, 'create' ) );
     add_action( 'wp_ajax_wp_coach_api_sections_show',    array( $this, 'show' ) );
