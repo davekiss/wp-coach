@@ -114,7 +114,16 @@ class WP_Coach_API_Sections extends WP_Coach_API  {
    * @return void
    */
   public function destroy() {
-    return;
+
+    if ( ! current_user_can('edit_wp_coach_course', $this->course_id ) ) {
+      die('Not allowed');
+    }
+
+    $section_id = intval( $_REQUEST['section_id'] );
+    $result = wp_delete_post( $section_id );
+
+    $status = $result ? 204 : 500;
+    die( status_header( $status ) );
   }
 
 
