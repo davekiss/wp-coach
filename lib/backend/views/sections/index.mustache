@@ -15,8 +15,8 @@
   <tbody>
     <tr class="wp-coach-section" rv-evented-each-section="sections.models">
       <td>
-        <i class="fa fa-circle-o fa-lg"></i>
-        <span rv-text="section:post_status" rv-addclass="section:post_status"></span>
+        <i class="fa fa-lg" rv-add-class="section:post_status | fa_post_status"></i>
+        <span rv-text="section:post_status"></span>
       </td>
       <td>
         <span rv-text="section:post_title" rv-hide="section.isEditingTitle" rv-on-click="section.startEditingTitle"></span>
@@ -30,21 +30,17 @@
       </td>
     </tr>
 
-
-      <tr class="wp-coach-lesson">
-        <td><i class="fa fa-circle-o fa-lg"></i> <span data-bind="text: post_status"></span></td>
-        <td>&#151; <span data-bind="text: post_title"></span></td>
-        <td class="wp-coach-actions">
-          <i class="fa fa-pencil fa-lg"></i>
-          <i class="fa fa-cog fa-lg"></i>
-          <i class="fa fa-times-circle-o fa-lg"></i>
-        </td>
-     </tr>
+    <tr class="wp-coach-lesson">
+      <td><i class="fa fa-circle-o fa-lg"></i> <span data-bind="text: post_status"></span></td>
+      <td>&#151; <span data-bind="text: post_title"></span></td>
+      <td class="wp-coach-actions">
+        <i class="fa fa-pencil fa-lg"></i>
+        <i class="fa fa-cog fa-lg"></i>
+        <i class="fa fa-times-circle-o fa-lg"></i>
+      </td>
+    </tr>
 
   </tbody>
 </table>
-
-<i class="fa fa-dot-circle-o"></i> Protected
-<td><i class="fa fa-check-circle-o"></i> Published</td>
 
 <div id="wp-coach-event-capture" style="display: none;"></div>
